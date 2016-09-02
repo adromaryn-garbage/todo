@@ -9,10 +9,10 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports ={
   entry: [
     'babel-polyfill',
-    __dirname + 'app/src/index.js'
+    path.join(__dirname, 'app/src/index.js')
   ],
   output: {
-    path: __dirname + 'app/public',
+    path: path.join(__dirname, 'app/public'),
     filename: 'index.js'
   },
 

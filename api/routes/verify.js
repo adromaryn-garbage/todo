@@ -8,7 +8,7 @@ exports.getToken = (user) => {
   var username = user.dataValues.username;
   var hash = user.dataValues.hash;
   return jwt.sign({ username: username, hash: hash }, config.secretKey, {
-    expiresIn: 3600*24*365
+    expiresIn: 3600*24*10
   })
 }
 

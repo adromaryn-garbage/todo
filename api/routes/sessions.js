@@ -1,15 +1,15 @@
 'use strict'
 
-const express = require('express')
-const router = express.Router()
-const passport = require('passport')
-const Verify = require('./verify')
+var express = require('express')
+var router = express.Router()
+var passport = require('passport')
+var Verify = require('./verify')
 
 router.route('/')
 .post((req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
-      return next(err);
+      return next(err)
     } else if (!user) {
       res.status(401).json({
         err: 'User not found!'
@@ -25,13 +25,15 @@ router.route('/')
           res.status(200).json({
             status: 'Login successful!',
             success: true,
-            token: token
+            token: token,
+            user: user.username
           })
         }
       })
     }
   })(req,res,next)
 })
+
 .delete((req, res) => {
   req.logout();
   res.status(200).json({

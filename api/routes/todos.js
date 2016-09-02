@@ -1,11 +1,11 @@
 'use strict'
 
-const express = require('express')
-const router = express.Router()
-const passport = require('passport')
-const Verify = require('./verify')
-const User = require('../models/user')
-const Todo = require('../models/todo')
+var express = require('express')
+var router = express.Router()
+var passport = require('passport')
+var Verify = require('./verify')
+var User = require('../models/user')
+var Todo = require('../models/todo')
 
 router.route('/')
 .get(Verify.verifyOrdinaryUser, (req, res, next) => {
@@ -23,7 +23,10 @@ router.route('/')
         }
       })
       .then(todos => {
-        res.json({ todos: todos })
+        res.json({
+          user: user.username,
+          todos: todos
+        })
       })
     } else {
       res.status(401).json({})
@@ -44,8 +47,14 @@ router.route('/')
         title: req.body.title,
         UserId: user.id
       })
-      .then(todos => {
-        res.status(200).json({})
+      .then(todo => {
+        Todo
+        .findAll({
+          where: {
+            UserId: user.id
+          }
+        })
+        .then(todos => {res.status(200).json({todos: todos})})
       })
       .catch(e => {
         res.status(400).json({message: e.message})
@@ -74,7 +83,15 @@ router.route('/:id')
       .then(todo => {
         if (todo.UserId === user.id) {
           todo.destroy()
-          res.status(200).json({'message': 'todo deleted'})
+          .then( result => {
+            Todo
+            .findAll({
+              where: {
+                UserId: user.id
+              }
+            })
+            .then(todos => {res.status(200).json({todos: todos})})
+          })
         } else {
           res.status(403).json({'message': 'not access to this todo'})
         }
@@ -109,7 +126,15 @@ router.route('/:id')
             { title: req.body.title }
           )
           .then(r => {
-            res.status(200).json({'message': 'todo updated'})
+            Todo
+            .findAll({
+              where: {
+                UserId: user.id
+              }
+            })
+            .then(todos => {
+              res.status(200).json({todos: todos})
+            })
           })
           .catch(e => {
             res.status(400).json({'message': 'todo not updated'})

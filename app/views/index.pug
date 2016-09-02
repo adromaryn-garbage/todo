@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  div#root
+  script.
+    var preloadedState = !{JSON.stringify(preloadedState)}
+  script(src='index.js')

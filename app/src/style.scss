@@ -1,0 +1,89 @@
+a {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+  &:active {
+    color: black;
+  }
+}
+
+#root {
+  width:700px;
+  margin: auto;
+}
+
+#auth {
+  padding: 40px 20px;
+  h1 {
+    text-align: center;
+    margin: auto;
+  }
+  input[type='text'], input[type='password'] {
+    margin: 20px auto;
+    height:28px;
+    width: 600px;
+    font-size: 20px;
+  }
+  input[type='submit'] {
+    font-size: 20px;
+    color: white;
+    background-color: #7109AA;
+    border: none;
+    padding: 5px;
+    &:active {
+      background-color: #5F2580;
+    }
+  }
+}
+
+#list {
+  padding: 40px 20px;
+  h1, h2{
+    text-align: center;
+    margin: auto;
+  },
+  h1 {
+    font-size: 20px;
+  }
+  .todo-item {
+    font-size: 24px;
+    padding: 5px;
+    background-color: #48036F;
+    border: 1px solid white;
+    word-wrap: break-word;
+    span {
+      display: inline-block;
+      width: 580px;
+      color: white;
+    }
+    &:after {
+      clear:both;
+      content: '';
+    }
+    a {
+      float: right;
+      margin: 5px;
+      color: white;
+      &.completed {
+        text-decoration: none;
+        color: #0a0;
+        &:active {
+          color: #070;
+        }
+      }
+    }
+  }
+  .even .todo-item {
+    background-color: #AD66D5;
+  }
+  input[type='text'] {
+    width: 580px;
+    font-size: 24px;
+  }
+}
+
+h1, h2 {
+  color: #9F3ED5;
+}

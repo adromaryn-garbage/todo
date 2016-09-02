@@ -1,10 +1,10 @@
 'use strict';
 
-const express = require('express')
-const router = express.Router()
-const passport = require('passport')
-const Verify = require('./verify')
-const User = require('../models/user')
+var express = require('express')
+var router = express.Router()
+var passport = require('passport')
+var Verify = require('./verify')
+var User = require('../models/user')
 
 router.route('/')
 .get((req, res, next) => {
@@ -14,19 +14,19 @@ router.route('/')
     res.json({ users: users })
   })
 })
+
 .post((req, res, next) => {
   User.register(req.body.username,
     req.body.password, (err, user)  => {
     if (err) {
-      if (err.name == 'UserExistsError') {
-        res.status = 400
-        res.json({
+      if (err.message.match(/User already exists with/)) {
+        res.status(400).json({
           message: err.message,
           error: err
         })
       } else {
-        res.status = 500;
-        return res.json({
+        console.log(err.name);
+        res.status(500).json({
           message: err.message,
           error: err
         })
