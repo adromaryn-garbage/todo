@@ -80,7 +80,7 @@
 
 Т.о., приложение состоит из 3 частей - API-сервер, middle-end-сервер и frontend.
 API-сервер расположен в папке ./api, для общения с базой данных (PostgreSQL) использует
-Sequelize ORM, и включает в себя две модели - Todo и User.
+[Sequelize ORM](http://docs.sequelizejs.com/en/v3/), и включает в себя две модели - Todo и User.
 Для аутентификации используется passport (Local Strategy), на middle-end отсылается
 сгенерированный JWT веб-токен.
 Роуты построены по REST-архитектуре, представляя собой ресурсы todo, session, user
@@ -137,7 +137,7 @@ Registration, что меняется изменением состояния au
    Для dev-окружения просто `webpack`
 5. Запускаем приложение.
    Для dev-окружения: `npm start`.
-   Можно указать порты серверов с помощью PORT_API и PORT_APP
+   Можно указать порты серверов с помощью PORT_API и PORT_APP.
    Для запуска в production будем использовать [pm2](https://github.com/Unitech/pm2)
    Установить pm2 можно с помощью npm: `sudo npm i -g pm2`
    Запускаем наше приложение:
