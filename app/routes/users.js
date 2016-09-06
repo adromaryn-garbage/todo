@@ -6,6 +6,14 @@ var redis = require('redis')
 var crypto = require('crypto')
 var request = require('request-json')
 var normalizePort = require('../../helpers/normalize-port')
+var config = require('../server.config.json');
+var redisOptions = {
+  host: config.redisHost,
+  port: config.redisPort,
+  prefix: config.redisPrefix,
+  db: config.redisDB,
+  password: config.redisDBPassword
+}
 
 var port_api = normalizePort(process.env.PORT_API || '3500')
 var client = request.createClient(`http://localhost:${port_api}/`)

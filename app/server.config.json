@@ -1,3 +1,8 @@
 {
-  "secretKey": "11111-11111-11111-11111"
+  "secretKey": "11111-11111-11111-11111",
+  "redisHost": "127.0.0.1",
+  "redisPort": 6379,
+  "redisPrefix": null,
+  "redisDB": 1,
+  "redisDBPassword": null
 }
